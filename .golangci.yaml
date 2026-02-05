@@ -1,0 +1,105 @@
+version: "2"
+run:
+  concurrency: 4
+  go: "1.25"
+  modules-download-mode: readonly
+  issues-exit-code: 2
+  tests: false
+output:
+  formats:
+    text:
+      path: stdout
+    tab:
+      path: stdout
+      colors: false
+linters:
+  enable:
+    - asciicheck
+    - bidichk
+    - copyloopvar
+    - cyclop
+    - decorder
+    - depguard
+    - dogsled
+    - dupl
+    - dupword
+    - funlen
+    - gocheckcompilerdirectives
+    - gochecknoinits
+    - gocognit
+    - goconst
+    - gocyclo
+    - godot
+    - godox
+    - goheader
+    - gomoddirectives
+    - gomodguard
+    - goprintffuncname
+    - grouper
+    - inamedparam
+    - interfacebloat
+    - lll
+    - maintidx
+    - misspell
+    - mnd
+    - nakedret
+    - nestif
+    - nlreturn
+    - nolintlint
+    - nosprintfhostport
+    - prealloc
+    - predeclared
+    - promlinter
+    - tagalign
+    - testpackage
+    - usestdlibvars
+    - whitespace
+    - wsl_v5
+  disable:
+    - tagliatelle
+    - unused
+  settings:
+    wsl_v5:
+      allow-first-in-block: true
+      allow-whole-block: false
+      branch-max-lines: 2
+    depguard:
+      rules:
+        main:
+          files:
+            - $all
+          allow:
+            - $gostd
+        tests:
+          files:
+            - $test
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - lll
+        source: BusinessCategory
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+issues:
+  new: true
+  fix: true
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
