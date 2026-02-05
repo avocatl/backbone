@@ -1,0 +1,56 @@
+{
+    "files.eol": "\n",
+    "go.toolsManagement.checkForUpdates": "local",
+    "go.toolsManagement.autoUpdate": true,
+    "go.useLanguageServer": true,
+    "[go]": {
+        "editor.defaultFormatter": "golang.go",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "[go.mod]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+    "gopls": {
+        "build.buildFlags": [
+            "-tags",
+            ""
+        ],
+        "formatting.gofumpt": true,
+        "ui.completion.usePlaceholders": false,
+        "ui.diagnostic.staticcheck": true,
+        "ui.semanticTokens": true
+    },
+    "go.lintTool": "golangci-lint",
+    "go.lintOnSave": "package",
+    "go.testFlags": [
+        "-v",
+        "-race"
+    ],
+    "go.testTimeout": "30s",
+    "go.coverOnSingleTest": true,
+    "go.coverOnSingleTestFile": true,
+    "go.coverOnTestPackage": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "workbench.iconTheme": "catppuccin-mocha",
+    "editor.fontFamily": "'Fira Code', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "terminal.integrated.env.osx": {
+        "GOOSE_DRIVER": "sqlite3",
+        "GOOSE_MIGRATION_DIR": "database/migrations",
+        "GOOSE_DBSTRING": "database/database.sqlite"
+    },
+    "terminal.integrated.env.linux": {
+        "GOOSE_DRIVER": "sqlite3",
+        "GOOSE_MIGRATION_DIR": "database/migrations",
+        "GOOSE_DBSTRING": "database/database.sqlite"
+    }
+}

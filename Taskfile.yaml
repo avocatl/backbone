@@ -1,0 +1,52 @@
+version: "3"
+
+tasks:
+  init:
+    - go mod init github.com/{{.CLI_ARGS}}
+    - go mod tidy
+    - go mod download
+
+  devtools:
+    desc: Intall go devtools
+    cmds:
+      - go get -modfile=go.tool.mod tool
+
+  modules:
+    desc: Install go modules
+    cmds:
+      - go mod download
+    silent: true
+
+  test:
+    desc: Run unit tests
+    cmds:
+      - go test -v ./...
+    silent: true
+
+  gen-docs:
+    desc: Generate documentation
+    cmds:
+      - go tool -modfile=go.tool.mod gomarkdoc -o docs/README.md ./...
+      - git add --all
+      - "git commit --message 'chore(docs): update generated docs'"
+
+  create-migration:
+    desc: Create a new database migration
+    cmds:
+      - go tool -modfile=go.tool.mod goose create create_{{.CLI_ARGS}}_table sql
+
+  migrate:
+    desc: Apply database migrations
+    cmds:
+      - go tool -modfile=go.tool.mod goose up
+
+  migrate-down:
+    desc: Rollback the last database migration
+    cmds:
+      - go tool -modfile=go.tool.mod goose down
+    silent: true
+
+  sqlc:
+    desc: Generate database query code
+    cmds:
+      - go tool -modfile=go.tool.mod sqlc generate
